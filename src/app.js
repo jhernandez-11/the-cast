@@ -53,7 +53,7 @@ app.get("/weather", (req, res) => {
       return res.send({ error });
     }
 
-    axios.post("https://the-cast-940b0-default-rtdb.firebaseio.com/location", {
+    axios.post("https://the-cast-940b0-default-rtdb.firebaseio.com/location.json", {
       latitude,
       longitude,
       location
@@ -95,5 +95,3 @@ app.get("*", (req, res) => {
 app.listen(port, () => {
   console.log("Server is up on port " + port + "...");
 });
-
-console.log('success')
