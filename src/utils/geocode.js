@@ -1,5 +1,4 @@
 const request = require("request");
-const axios = require("axios");
 
 const geocode = (address, callback) => {
   const url =
@@ -12,21 +11,11 @@ const geocode = (address, callback) => {
     } else if (body.features.length === 0) {
       callback("Location not found, please try again!", undefined);
     } else {
-      callback(
-        undefined,
-        {
-          latitude: body.features[0].center[1],
-          longitude: body.features[0].center[0],
-          location: body.features[0].place_name,
-        },
-        () => {
-          axios.post("https://the-cast-940b0-default-rtdb.firebaseio.com/coordinates", {
-            latitude: body.features[0].center[1],
-            longitude: body.features[0].center[0],
-            location: body.features[0].place_name,
-          });
-        }
-      );
+      callback(undefined, {
+        latitude: body.features[0].center[1],
+        longitude: body.features[0].center[0],
+        location: body.features[0].place_name,
+      });
     }
   });
 };
